@@ -16,11 +16,11 @@ public class App {
         ListaEncadeada ListaDuration = new ListaEncadeada();
         ListaEncadeada ListaStartTime = new ListaEncadeada();
 
-        String path = "LAMetroTrips.csv";
+        String path = "/arquivos/LAMetroTrips.csv";
 
-        String ArquivoDuration = "LAMetroTripsDuration";
-        String ArquivoStartTime = "LAMetroTripsStartTime";
-        String ArquivoStartStation = "LAMetroTripsStartStation";
+        String ArquivoDuration = "/arquivos/LAMetroTripsDuration";
+        String ArquivoStartTime = "/arquivos/LAMetroTripsStartTime";
+        String ArquivoStartStation = "/arquivos/LAMetroTripsStartStation";
 
         String line = "";
 
