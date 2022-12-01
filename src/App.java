@@ -1,53 +1,44 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class App {
     
     public static void main(String[] args) throws IOException{
 
+        long tempoInicialTotal;//variável para iniciar o tempo em ms
         long tempoInicial;//variável para iniciar o tempo em ms
-        long tempoFinal;// variável pra finalizar o tempo em ms
 
         System.out.println("execução iniciada");
+        tempoInicialTotal = System.currentTimeMillis();//inicia o tempo
         tempoInicial = System.currentTimeMillis();//inicia o tempo
 
-        ListaEncadeada ListaStartStation = new ListaEncadeada();
-        ListaEncadeada ListaDuration = new ListaEncadeada();
-        ListaEncadeada ListaStartTime = new ListaEncadeada();
-
-        String path = "/arquivos/LAMetroTrips.csv";
-
-        String ArquivoDuration = "/arquivos/LAMetroTripsDuration";
-        String ArquivoStartTime = "/arquivos/LAMetroTripsStartTime";
-        String ArquivoStartStation = "/arquivos/LAMetroTripsStartStation";
-
-        String line = "";
-
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
-            br.readLine();
-
-            while((line = br.readLine()) != null){
-                String[] linha = line.split(",");
-
-                ListaStartStation.inserirStart_station(new Nó(Integer.parseInt(linha[0]), Integer.parseInt(linha[1]), linha[2], linha[3], Integer.parseInt(linha[4]), linha[5], Integer.parseInt(linha[6]), linha[7], linha[8], linha[9], linha[10], linha[11], linha[12], linha[13], linha[14], linha[15]));
-                ListaDuration.inserirDuration(new Nó(Integer.parseInt(linha[0]), Integer.parseInt(linha[1]), linha[2], linha[3], Integer.parseInt(linha[4]), linha[5], Integer.parseInt(linha[6]), linha[7], linha[8], linha[9], linha[10], linha[11], linha[12], linha[13], linha[14], linha[15]));
-                ListaStartTime.inserirStart_Time(new Nó(Integer.parseInt(linha[0]), Integer.parseInt(linha[1]), linha[2], linha[3], Integer.parseInt(linha[4]), linha[5], Integer.parseInt(linha[6]), linha[7], linha[8], linha[9], linha[10], linha[11], linha[12], linha[13], linha[14], linha[15]));
-
-            }
-            br.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        ListaStartStation.escreveCSV(ArquivoStartStation);
-        ListaDuration.escreveCSV(ArquivoDuration);
-        ListaStartTime.escreveCSV(ArquivoStartTime);
+        //transformacoes
+        Transformacao1 t1 = new Transformacao1();
+        Transformacao2 t2 = new Transformacao2();
+        Transformacao3 t3 = new Transformacao3();
+        
+        t1.Transformacao();
+        System.out.println("Transformacao 1 terminada em: "+ (System.currentTimeMillis()-tempoInicial)+" ms");
+        tempoInicial = System.currentTimeMillis();//inicia o tempo
+        t2.filtraArquivo();
+        System.out.println("Transformacao 2 terminada em: "+ (System.currentTimeMillis()-tempoInicial)+" ms");
+        tempoInicial = System.currentTimeMillis();//inicia o tempo
+        t3.filtraArquivo();
+        System.out.println("Transformacao 3 terminada em: "+ (System.currentTimeMillis()-tempoInicial)+" ms");
 
 
-        tempoFinal = System.currentTimeMillis()-tempoInicial;
-        System.out.println("execução terminada em: "+ tempoFinal+" ms");
+        System.out.println("iniciando ordenacoes");
+        tempoInicial = System.currentTimeMillis();//inicia o tempo
+        Ordenacao1 ordenaStation = new Ordenacao1();
+        Ordenacao2 ordenaDuration = new Ordenacao2();
+        Ordenacao3 ordenaTime = new Ordenacao3();
+
+        ordenaStation.OrdenaStartStation();
+        System.out.println("Ordenacao 1 terminada em: "+ (System.currentTimeMillis()-tempoInicial)+" ms");
+        ordenaDuration.OrdenaDuration();
+        System.out.println("Ordenacao 2 terminada em: "+ (System.currentTimeMillis()-tempoInicial)+" ms");
+        ordenaTime.OrdenaStartTime();
+        System.out.println("Ordenacao 3 terminada em: "+ (System.currentTimeMillis()-tempoInicial)+" ms");
+
+        System.out.println("execução terminada em: "+ (System.currentTimeMillis() - tempoInicialTotal) +" ms");
     }
 }

@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ListaEncadeada {
-    private Nó primeiro;
+    private NóMain primeiro;
 
     //constructor
     public ListaEncadeada(){
@@ -13,13 +13,13 @@ public class ListaEncadeada {
 
     //funcionalidades
         //inserir ordenado
-        public void inserirStart_station(Nó novoNó) {
+        public void inserirStart_station(NóMain novoNó) {
 
             if(primeiro == null){
                 primeiro = novoNó;
             }else{
-                Nó atual = primeiro;
-                Nó anterior = null;
+                NóMain atual = primeiro;
+                NóMain anterior = null;
     
                 //itera pela lista procurando a posição certa
                 while(atual != null){
@@ -49,13 +49,13 @@ public class ListaEncadeada {
             }
         }
 
-       public void inserirDuration(Nó novoNó) {
+       public void inserirDuration(NóMain novoNó) {
 
             if(primeiro == null){
                 primeiro = novoNó;
             }else{
-                Nó atual = primeiro;
-                Nó anterior = null;
+                NóMain atual = primeiro;
+                NóMain anterior = null;
     
                 //itera pela lista procurando a posição certa
                 while(atual != null){
@@ -84,13 +84,13 @@ public class ListaEncadeada {
             }
         }
 
-    public void inserirStart_Time(Nó novoNó) {
+    public void inserirStart_Time(NóMain novoNó) {
 
         if(primeiro == null){
             primeiro = novoNó;
         }else{
-            Nó atual = primeiro;
-            Nó anterior = null;
+            NóMain atual = primeiro;
+            NóMain anterior = null;
 
             //itera pela lista procurando a posição certa
             while(atual != null){
@@ -122,7 +122,7 @@ public class ListaEncadeada {
 
 
     public void escreveCSV(String nomeArquivo) throws IOException{
-        Nó atual = primeiro;
+        NóMain atual = primeiro;
 
         File product = new File(nomeArquivo);//determina onde será escrito
         FileWriter escritor = new FileWriter(product);//escreve em arquivo
